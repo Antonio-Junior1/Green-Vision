@@ -41,12 +41,18 @@ function DeveloperCard({
   rm,
   email,
   github,
-  linkedin, // Substituído para LinkedIn
+  linkedin,
   image,
 }: DeveloperProps) {
   return (
     <div className="flex flex-col items-center bg-white p-6 rounded-lg shadow-lg w-80">
-      <img src={image} alt={`Foto de ${name}`} className="w-full h-52 object-cover rounded-t-lg" />
+      <div className="w-full h-52">
+        <img 
+          src={image} 
+          alt={`Foto de ${name}`} 
+          className="w-full h-full object-contain rounded-t-lg" 
+        />
+      </div>
       <h3 className="text-black text-xl font-bold mt-3">{name}</h3>
       <p className="text-gray-600">RM: {rm}</p>
       <p className="text-gray-600">{email}</p>
@@ -62,7 +68,7 @@ function DeveloperCard({
           </a>
         )}
         <a
-          href={linkedin} // Substituído para LinkedIn
+          href={linkedin}
           className="text-blue-700 underline"
           target="_blank"
           rel="noopener noreferrer"
@@ -84,7 +90,7 @@ export default function DevelopersList() {
           rm={developer.rm}
           email={developer.email}
           github={developer.github}
-          linkedin={developer.linkedin} // Substituído para LinkedIn
+          linkedin={developer.linkedin}
           image={developer.image}
         />
       ))}
