@@ -1,13 +1,15 @@
 "use client";
-import Link from 'next/link';
+
+
 import React, { useState, useEffect } from 'react';
+import { FaHandPointRight } from 'react-icons/fa'; // Ícone de destaque para chamar a atenção
 
 // Definindo a interface TipoIndicado de acordo com a resposta da API
 interface TipoIndicado {
-    idIndicado: number; // Alterado para idIndicado
+    idIndicado: number;
     nome: string;
     email: string;
-    relacao: string; // Relação com a pessoa indicada (ex: amigo, colega, etc.)
+    relacao: string;
 }
 
 export default function IndicarPessoa() {
@@ -56,7 +58,7 @@ export default function IndicarPessoa() {
             });
 
             if (response.ok) {
-                setMensagemCadastro(modoEdicao ? "Indicação atualizada com sucesso!" : "Pessoa indicada com sucesso!");
+                setMensagemCadastro(modoEdicao ? "Indicação atualizada com sucesso!" : "Obrigado! Pessoa indicada com sucesso!");
                 setIndicado({ idIndicado: 0, nome: "", email: "", relacao: "" });
                 setModoEdicao(null);
                 const updatedIndicados = await (await fetch('http://localhost:8080/indicados')).json();
@@ -99,72 +101,74 @@ export default function IndicarPessoa() {
     };
 
     return (
-        <div className='bg-black'>
-            <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-green-700 bg-[#009688]">
-                <section className="bg-white flex flex-col items-center p-10 rounded-lg shadow-lg w-80 transition-all duration-300 text-black">
-                    <h2 className="text-2xl font-bold mb-5">{modoEdicao ? 'Editar Indicação' : 'Indicar Pessoa'}</h2>
-                    <form onSubmit={handleSubmit} className="flex flex-col w-full space-y-3">
-                        <input
-                            type="text"
-                            placeholder="Nome do Indicado"
-                            value={indicado.nome}
-                            onChange={(e) => setIndicado({ ...indicado, nome: e.target.value })}
-                            required
-                            className="p-2 border rounded-md focus:outline-none focus:border-green-500"
-                        />
-                        <input
-                            type="email"
-                            placeholder="E-mail"
-                            value={indicado.email}
-                            onChange={(e) => setIndicado({ ...indicado, email: e.target.value })}
-                            required
-                            className="p-2 border rounded-md focus:outline-none focus:border-green-500"
-                        />
-                        <input
-                            type="text"
-                            placeholder="Relação (ex: amigo, colega, etc.)"
-                            value={indicado.relacao}
-                            onChange={(e) => setIndicado({ ...indicado, relacao: e.target.value })}
-                            required
-                            className="p-2 border rounded-md focus:outline-none focus:border-green-500"
-                        />
+        <div className='min-h-screen bg-gradient-to-b from-green-600 to-green-800 p-6 flex flex-col items-center'>
+            <div className="bg-white p-10 rounded-lg shadow-2xl max-w-lg w-full text-center">
+                <div className="flex justify-center items-center mb-4">
+                    <FaHandPointRight className="text-yellow-500 text-4xl mr-2" />
+                    <h2 className="text-3xl font-bold text-green-800">Indique e Faça a Diferença!</h2>
+                </div>
+                <p className="text-gray-700 mb-6">
+                    Convide seus amigos, colegas ou familiares para conhecerem mais sobre energia verde e se unirem ao movimento por um futuro sustentável. Juntos, podemos fazer a diferença!
+                </p>
+                <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
+                    <input
+                        type="text"
+                        placeholder="Nome do Indicado"
+                        value={indicado.nome}
+                        onChange={(e) => setIndicado({ ...indicado, nome: e.target.value })}
+                        required
+                        className="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                    />
+                    <input
+                        type="email"
+                        placeholder="E-mail do Indicado"
+                        value={indicado.email}
+                        onChange={(e) => setIndicado({ ...indicado, email: e.target.value })}
+                        required
+                        className="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                    />
+                    <input
+                        type="text"
+                        placeholder="Relação (ex: amigo, colega, etc.)"
+                        value={indicado.relacao}
+                        onChange={(e) => setIndicado({ ...indicado, relacao: e.target.value })}
+                        required
+                        className="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                    />
+                    <button
+                        type="submit"
+                        className="w-full p-3 bg-green-600 text-white rounded-lg hover:bg-green-500 transition transform hover:scale-105"
+                        disabled={loading}
+                    >
+                        {loading ? 'Enviando...' : modoEdicao ? 'Atualizar Indicação' : 'Indicar Agora'}
+                    </button>
+                    {modoEdicao && (
                         <button
-                            type="submit"
-                            className="w-full p-2 bg-green-600 text-white rounded-md mt-3 hover:bg-green-500 transition"
-                            disabled={loading}
+                            type="button"
+                            onClick={() => {
+                                setModoEdicao(null);
+                                setIndicado({ idIndicado: 0, nome: "", email: "", relacao: "" });
+                            }}
+                            className="w-full p-3 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition"
                         >
-                            {loading ? 'Processando...' : modoEdicao ? 'Atualizar' : 'Indicar'}
+                            Cancelar
                         </button>
-                        {modoEdicao && (
-                            <button
-                                type="button"
-                                onClick={() => {
-                                    setModoEdicao(null);
-                                    setIndicado({ idIndicado: 0, nome: "", email: "", relacao: "" });
-                                }}
-                                className="w-full p-2 bg-gray-500 text-white rounded-md mt-2 hover:bg-gray-600 transition"
-                            >
-                                Cancelar
-                            </button>
-                        )}
-                    </form>
-                    <Link href="/login" className="w-full p-2 bg-[#009688] text-white rounded-md mt-4 text-center hover:bg-green-600 transition">
-                        Voltar ao Login
-                    </Link>
-                    <p className={`mt-4 text-sm ${mensagemCadastro.includes('sucesso') ? 'text-green-500' : 'text-red-500'}`}>
-                        {mensagemCadastro}
-                    </p>
-                </section>
+                    )}
+                </form>
+                <p className={`mt-4 text-sm ${mensagemCadastro.includes('sucesso') ? 'text-green-500' : 'text-red-500'}`}>
+                    {mensagemCadastro}
+                </p>
             </div>
-            <div className="mt-10 bg-black max-w-6xl mx-auto py-10 px-5">
-                <h2 className="text-3xl font-bold mb-5 text-center text-white">Gerenciamento de Indicações</h2>
+
+            <div className="mt-10 bg-white p-6 rounded-lg shadow-lg w-full max-w-5xl">
+                <h2 className="text-2xl font-bold mb-4 text-center text-green-800">Indicações Recentes</h2>
                 <div className="flex flex-wrap justify-center gap-6">
                     {indicados.map((dev) => (
-                        <div key={dev.idIndicado} className="bg-white p-5 rounded-lg shadow-lg text-black">
-                            <h3 className="font-bold">{dev.nome}</h3>
+                        <div key={dev.idIndicado} className="bg-gray-100 p-4 rounded-lg shadow-md w-full max-w-xs">
+                            <h3 className="font-bold text-green-800">{dev.nome}</h3>
                             <p>Email: {dev.email}</p>
                             <p>Relação: {dev.relacao}</p>
-                            <div className="flex justify-between mt-5">
+                            <div className="flex justify-between mt-4">
                                 <button
                                     onClick={() => iniciarEdicao(dev)}
                                     className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600 transition"

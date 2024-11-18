@@ -18,7 +18,7 @@ export default function Footer() {
         </span>
 
         <a href="/Projeto" className="px-8 py-3 bg-gradient-to-r from-green-600 to-green-500 text-white rounded-lg shadow-md hover:shadow-lg hover:from-green-700 hover:to-green-600 transition-all duration-300 transform hover:scale-105 focus:ring-4 focus:ring-green-300">
-          Conheça nossos projetos
+          Conheça nosso projeto
         </a>
 
         <div className="w-11/12 border-t border-green-400 my-8" />
