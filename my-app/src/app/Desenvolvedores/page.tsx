@@ -8,6 +8,7 @@ const developers = [
     github: 'https://github.com/Antonio-Junior1',
     linkedin: 'https://www.linkedin.com/in/antoniojr1/', 
     image: '/images/Antonio.jpeg',
+    turma: 'Turma:1TDSPJ-2024',
   },
   {
     name: 'Carlos Eduardo',
@@ -16,6 +17,7 @@ const developers = [
     github: 'https://github.com/CarlosCampos84',
     linkedin: 'https://www.linkedin.com/in/carlos-eduardo-campos-ba87b8302', 
     image: '/images/Cadu.jpeg',
+    turma: 'Turma:1TDSPJ-2024',
   },
   {
     name: 'Gustavo Souza',
@@ -24,6 +26,7 @@ const developers = [
     github: 'https://github.com/gustavoamorim12',
     linkedin: 'https://www.linkedin.com/in/gustavo-souza-14b100238/', 
     image: '/images/gusta.jpeg',
+    turma: 'Turma:1TDSPW-2024',
   },
 ];
 
@@ -34,6 +37,7 @@ interface DeveloperProps {
   github: string;
   linkedin: string; 
   image: string;
+  turma: string;
 }
 
 function DeveloperCard({
@@ -43,6 +47,7 @@ function DeveloperCard({
   github,
   linkedin,
   image,
+  turma,
 }: DeveloperProps) {
   return (
     <div className="flex flex-col items-center bg-white p-6 rounded-lg shadow-lg w-80">
@@ -56,6 +61,7 @@ function DeveloperCard({
       <h3 className="text-black text-xl font-bold mt-3">{name}</h3>
       <p className="text-gray-600">RM: {rm}</p>
       <p className="text-gray-600">{email}</p>
+      <p className="text-gray-600">{turma}</p>
       <div className="flex mt-3 space-x-2">
         {github && (
           <a
@@ -92,6 +98,7 @@ export default function DevelopersList() {
           github={developer.github}
           linkedin={developer.linkedin}
           image={developer.image}
+          turma={developer.turma}
         />
       ))}
     </div>
