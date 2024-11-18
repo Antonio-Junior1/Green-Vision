@@ -16,7 +16,7 @@ export function HeaderHome() {
       {/* Logo Section (Centralized and Resized) */}
       <div className="w-64 h-24 md:w-80 md:h-28 relative mb-4">
         <Image
-          src="/images/logo.png"
+          src="/images/Logo.png"
           alt="GV"
           fill
           style={{ objectFit: 'contain' }}
