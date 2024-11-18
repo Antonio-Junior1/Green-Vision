@@ -17,7 +17,7 @@ export default function Footer() {
           Transforme suas necessidades em soluções práticas e sustentáveis com o poder da tecnologia e eficiência. Descubra a força de uma abordagem integrada para um amanhã mais verde.
         </span>
 
-        <a href="/Servico" className="px-8 py-3 bg-gradient-to-r from-green-600 to-green-500 text-white rounded-lg shadow-md hover:shadow-lg hover:from-green-700 hover:to-green-600 transition-all duration-300 transform hover:scale-105 focus:ring-4 focus:ring-green-300">
+        <a href="/Projetos" className="px-8 py-3 bg-gradient-to-r from-green-600 to-green-500 text-white rounded-lg shadow-md hover:shadow-lg hover:from-green-700 hover:to-green-600 transition-all duration-300 transform hover:scale-105 focus:ring-4 focus:ring-green-300">
           Conheça nossos projetos
         </a>
 
