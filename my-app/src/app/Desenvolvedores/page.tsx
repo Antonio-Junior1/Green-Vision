@@ -14,7 +14,7 @@ const developers = [
     rm: '555223',
     email: 'CarlosEduardo@Gmail.com',
     github: 'https://github.com/CarlosCampos84',
-    linkedin: 'https://www.linkedin.com/in/carlos-eduardo/', 
+    linkedin: 'https://www.linkedin.com/in/carlos-eduardo-campos-ba87b8302', 
     image: '/images/Cadu.jpeg',
   },
   {
