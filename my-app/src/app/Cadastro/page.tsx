@@ -1,11 +1,13 @@
 "use client";
+
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useState, useEffect } from 'react';
+import { FaEdit, FaTrash } from 'react-icons/fa'; // Ícones para edição e exclusão
 
 interface TipoCadastro {
     usuario: string;
-    nome: string; // Nome completo
+    nome: string;
     email: string;
     senha: string;
 }
@@ -28,12 +30,12 @@ export default function Cadastro() {
             try {
                 const response = await fetch('http://localhost:8080/usuario');
                 if (!response.ok) {
-                    throw new Error('Erro ao buscar cadastros');
+                    throw new Error('Erro ao buscar dados');
                 }
                 const data: TipoCadastro[] = await response.json();
                 setCadastros(data);
             } catch (error) {
-                console.error('Erro ao buscar cadastros:', error);
+                console.error('Erro ao buscar dados:', error);
             }
         };
 
@@ -57,7 +59,7 @@ export default function Cadastro() {
             });
 
             if (response.ok) {
-                setMensagemCadastro(modoEdicao ? "Cadastro atualizado com sucesso!" : "Usuário cadastrado com sucesso!");
+                setMensagemCadastro(modoEdicao ? "Dados atualizados com sucesso!" : "Usuário cadastrado com sucesso!");
                 setCadastro({ usuario: "", nome: "", email: "", senha: "" });
                 setModoEdicao(null);
                 const updatedCadastros = await (await fetch('http://localhost:8080/usuario')).json();
@@ -89,13 +91,13 @@ export default function Cadastro() {
 
             if (response.ok) {
                 setCadastros(cadastros.filter((c) => c.usuario !== usuario));
-                setMensagemCadastro("Cadastro excluído com sucesso!");
+                setMensagemCadastro("Dados excluídos com sucesso!");
             } else {
-                throw new Error('Erro ao excluir o cadastro');
+                throw new Error('Erro ao excluir os dados');
             }
         } catch (error) {
-            console.error('Erro ao excluir cadastro:', error);
-            setMensagemCadastro('Erro ao excluir cadastro. Tente novamente.');
+            console.error('Erro ao excluir dados:', error);
+            setMensagemCadastro('Erro ao excluir dados. Tente novamente.');
         }
     };
 
@@ -109,7 +111,7 @@ export default function Cadastro() {
         <div className='bg-gradient-to-b from-green-900 to-green-800 min-h-screen'>
             <div className="flex items-center justify-center min-h-screen">
                 <section className="bg-green-700 flex flex-col items-center p-10 rounded-lg shadow-lg w-80 transition-all duration-300 text-white">
-                    <h2 className="text-2xl font-bold mb-5">{modoEdicao ? 'Editar Cadastro' : 'Cadastro'}</h2>
+                    <h2 className="text-2xl font-bold mb-5">{modoEdicao ? 'Editar Dados' : 'Cadastro'}</h2>
                     <form onSubmit={handleSubmit} className="flex flex-col w-full space-y-3">
                         <input
                             type="text"
@@ -171,25 +173,27 @@ export default function Cadastro() {
                     </p>
                 </section>
             </div>
-            <div className="mt-10 bg-green-900 max-w-6xl mx-auto py-10 px-5">
-                <h2 className="text-3xl font-bold mb-5 text-center text-white">Gerenciamento de Cadastros</h2>
+            <div className="mt-10 bg-green-800 max-w-6xl mx-auto py-10 px-5 rounded-lg shadow-2xl">
+                <h2 className="text-3xl font-bold mb-5 text-center text-white">Gerenciamento de Dados</h2>
                 <div className="flex flex-wrap justify-center gap-6">
                     {cadastros.map((dev) => (
-                        <div key={dev.usuario} className="bg-green-800 p-5 rounded-lg shadow-lg text-white">
-                            <h3 className="font-bold">{dev.nome}</h3>
+                        <div key={dev.usuario} className="bg-white p-6 border-2 border-green-500 rounded-lg shadow-md w-full max-w-xs text-gray-800 hover:shadow-lg transition">
+                            <h3 className="font-bold text-green-800">{dev.nome}</h3>
                             <p>Email: {dev.email}</p>
-                            <button
-                                className="mt-2 p-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition"
-                                onClick={() => handleDelete(dev.usuario)}
-                            >
-                                Excluir
-                            </button>
-                            <button
-                                className="mt-2 p-2 bg-yellow-500 text-black rounded-md hover:bg-yellow-600 transition"
-                                onClick={() => iniciarEdicao(dev)}
-                            >
-                                Editar
-                            </button>
+                            <div className="flex justify-between mt-4">
+                                <button
+                                    className="flex items-center bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600 transition"
+                                    onClick={() => iniciarEdicao(dev)}
+                                >
+                                    <FaEdit className="mr-2" /> Editar
+                                </button>
+                                <button
+                                    className="flex items-center bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition"
+                                    onClick={() => handleDelete(dev.usuario)}
+                                >
+                                    <FaTrash className="mr-2" /> Excluir
+                                </button>
+                            </div>
                         </div>
                     ))}
                 </div>
