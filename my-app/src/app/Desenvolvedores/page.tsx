@@ -51,11 +51,11 @@ function DeveloperCard({
 }: DeveloperProps) {
   return (
     <div className="flex flex-col items-center bg-white p-6 rounded-lg shadow-lg w-80">
-      <div className="w-full h-52">
+      <div className="w-full h-72 overflow-hidden">
         <img 
           src={image} 
           alt={`Foto de ${name}`} 
-          className="w-full h-full object-contain rounded-t-lg" 
+          className="w-full h-full object-cover rounded-t-lg" 
         />
       </div>
       <h3 className="text-black text-xl font-bold mt-3">{name}</h3>
