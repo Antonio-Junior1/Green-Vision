@@ -4,7 +4,7 @@ export default function ContactForm() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-green-800 to-green-700 p-6">
       <h2 className="text-2xl font-bold text-white mb-4">Fale Conosco</h2>
-      <form className="flex flex-col w-full max-w-md mt-4 bg-white p-6 rounded-lg shadow-md">
+      <form className="flex flex-col w-full max-w-md mt-4 bg-white p-6 rounded-lg shadow-md text-black">
         <label htmlFor="name" className="text-gray-700 mb-2">Nome:</label>
         <input 
           type="text" 
