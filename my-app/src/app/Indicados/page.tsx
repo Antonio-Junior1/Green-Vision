@@ -110,7 +110,7 @@ export default function IndicarPessoa() {
                 <p className="text-gray-700 mb-6">
                     Convide seus amigos, colegas ou familiares para conhecerem mais sobre energia verde e se unirem ao movimento por um futuro sustentável. Juntos, podemos fazer a diferença!
                 </p>
-                <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
+                <form onSubmit={handleSubmit} className="flex flex-col space-y-4 text-black" >
                     <input
                         type="text"
                         placeholder="Nome do Indicado"
