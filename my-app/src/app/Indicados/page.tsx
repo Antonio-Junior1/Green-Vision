@@ -2,9 +2,7 @@
 
 
 import React, { useState, useEffect } from 'react';
-import { FaHandPointRight } from 'react-icons/fa'; // Ícone de destaque para chamar a atenção
 
-// Definindo a interface TipoIndicado de acordo com a resposta da API
 interface TipoIndicado {
     idIndicado: number;
     nome: string;

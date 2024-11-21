@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useState, useEffect } from 'react';
-import { FaEdit, FaTrash } from 'react-icons/fa'; // 
+import { FaEdit, FaTrash } from 'react-icons/fa'; // Correção de comentário 
 
 interface TipoCadastro {
     usuario: string;
