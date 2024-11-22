@@ -3,10 +3,8 @@ import { useState } from 'react';
 import Image from 'next/image';
 
 export function HeaderHome() {
-  // State to control the visibility of additional buttons
   const [showAdditionalButtons, setShowAdditionalButtons] = useState(false);
 
-  // Toggle function for additional buttons
   const toggleButtons = () => {
     setShowAdditionalButtons(!showAdditionalButtons);
   };
